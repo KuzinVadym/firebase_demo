@@ -1,0 +1,16 @@
+.idea
+tmp/
+
+client/.env
+server/.env
+server/dist
+
+client/node_modules/*
+server/node_modules/*
+client/yarn.lock
+server/yarn.lock
+
+client/yarn-error.log
+server/yarn-error.log
+
+
