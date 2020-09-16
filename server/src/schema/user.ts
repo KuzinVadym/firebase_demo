@@ -7,17 +7,16 @@ export default gql`
   }
   
   extend type Mutation {
+    
     create(
       username: String!
       email: String!
-      password: String!
     ): User
     
     update(
       id: ID
       username: String
       email: String
-      password: String
     ): User
     
     delete(
@@ -30,7 +29,5 @@ export default gql`
     id: ID!
     username: String!
     email: String!
-    password: String
-    role: String
   }
 `;

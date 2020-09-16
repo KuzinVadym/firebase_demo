@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-koa';
 
+import authSchema from './auth';
 import userSchema from './user';
 
 const linkSchema = gql`
@@ -14,4 +15,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema];
+export default [linkSchema, authSchema, userSchema];

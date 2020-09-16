@@ -8,18 +8,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./components/App";
 import * as serviceWorker from './serviceWorker';
-import {AppProvider} from "./context";
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-    uri: 'http://localhost:4000/',
+    uri: 'http://localhost:4000/graphql',
     cache: new InMemoryCache()
 });
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <AppProvider>
-            <App />
-        </AppProvider>,
+        <App />
     </ApolloProvider>,
     document.getElementById('root')
 );

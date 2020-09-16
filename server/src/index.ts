@@ -1,8 +1,18 @@
 import Koa from 'koa';
+import cors from '@koa/cors';
 import { ApolloServer } from 'apollo-server-koa';
 import schema from './schema';
 import resolvers from './resolvers';
 import models from './models';
+import admin from 'firebase-admin'
+import * as firebase from 'firebase';
+import {settings} from "./settings";
+
+admin.initializeApp({credential: admin.credential.cert(settings.firebase.admin)});
+const db = admin.firestore();
+
+firebase.initializeApp(settings.firebase.client);
+const auth = firebase.auth();
 
 const server = new ApolloServer({
         typeDefs : schema,
@@ -12,7 +22,9 @@ const server = new ApolloServer({
                 return {
                     req: ctx.req,
                     res: ctx.res,
-                    models
+                    models,
+                    db,
+                    auth
                 };
             }
         }
@@ -20,6 +32,8 @@ const server = new ApolloServer({
 );
 
 const app = new Koa();
+
+app.use(cors());
 
 server.applyMiddleware({app});
 

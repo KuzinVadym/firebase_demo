@@ -1,31 +1,55 @@
-import React, {useContext, useState} from 'react';
+import React, { useState } from 'react';
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import {Button, Grid, TextField} from "@material-ui/core";
 
 import useStyles from "./style";
-import {Button, Grid, TextField} from "@material-ui/core";
-import {AppContext} from "../../context";
+import {clearSessionStorage, updateSessionStorage} from "./helpers";
+import { LOG_IN, LOG_OUT } from './mutations';
+import {GET_AUTH_USER} from "./queries";
+
 
 const Login = () => {
     const classes = useStyles();
-    const [loginInput, setLoginInput] = useState<string>('coding-challenge@construyo.de');
+    const [emailInput, setEmailInput] = useState<string>('coding-challenge@construyo.de');
     const [passwordInput, setPasswordInput] = useState<string>('coding-challenge@construyo.de');
+    const { data } = useQuery(GET_AUTH_USER);
 
-    const {firebaseAuth, setAuthenticatedUser} = useContext(AppContext);
-    const changeLoginInputHandler = (e: any) => {
-        setLoginInput(e.target.value);
+    const [ login ] = useMutation(LOG_IN, {
+        update(cache, { data: { login } }) {
+            updateSessionStorage(login);
+            cache.writeQuery({
+                query: GET_AUTH_USER,
+                data: { authenticatedUser: login },
+            });
+        }
+    });
+
+    const [ logout ] = useMutation(LOG_OUT, {
+        update(cache, { data: { logout } }) {
+            console.log(logout);
+            clearSessionStorage();
+            cache.writeQuery({
+                query: GET_AUTH_USER,
+                data: { authenticatedUser: null },
+            });
+        }
+    });
+
+    const changeEmailInputHandler = (e: any) => {
+        setEmailInput(e.target.value);
     };
     const changePasswordInputHandler = (e: any) => {
         setPasswordInput(e.target.value);
     };
 
-    const loginHandler = () => {
+    const loginHandler = async () => {
         console.log('login');
-        firebaseAuth.signInWithEmailAndPassword(loginInput, passwordInput).then((result: any) => {
-            setAuthenticatedUser({id: result.user.uid, email: result.user.s});
-        })
+        login({ variables: { email: emailInput, password: passwordInput } })
     };
 
     const logoutHandler = () => {
-        console.log('logout')
+        console.log('logout');
+        logout({ variables: { uid: data.authenticatedUser.uid } })
     };
 
 
@@ -54,12 +78,12 @@ const Login = () => {
                         xs={12} sm={12} md={4} lg={4} xl={3}
                     >
                         <TextField
-                            label="Login"
-                            value={loginInput}
-                            className={classes.loginTextField}
-                            onChange={(e)=> changeLoginInputHandler(e)}
-                            InputProps={{ id: 'login-input' }}
-                            InputLabelProps={{ htmlFor: 'login-input' }}
+                            label="Email"
+                            value={emailInput}
+                            className={classes.emailTextField}
+                            onChange={(e)=> changeEmailInputHandler(e)}
+                            InputProps={{ id: 'email-input' }}
+                            InputLabelProps={{ htmlFor: 'email-input' }}
                         />
                     </Grid>
                     <Grid

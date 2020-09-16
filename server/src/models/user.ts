@@ -3,7 +3,6 @@ interface IUser {
   id: string;
   username: string;
   email: string;
-  password: string;
 }
 
 interface IUpdatePayload {
@@ -16,9 +15,9 @@ interface IUserClass {
 }
 
 const defaultEntities: IUser[] = [
-  {id: '1', username: 'Vadym', email: 'v@gmail.com', password: '1'},
-  {id: '2', username: 'Olha', email: 'o@gmail.com', password: '2'},
-  {id: '3', username: 'Aron', email: 'a@gmail.com', password: '3'}
+  {id: '1', username: 'Vadym', email: 'v@gmail.com', },
+  {id: '2', username: 'Olha', email: 'o@gmail.com', },
+  {id: '3', username: 'Aron', email: 'a@gmail.com', }
 ];
 
 class User implements IUserClass{

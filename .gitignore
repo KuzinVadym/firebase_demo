@@ -3,7 +3,8 @@ tmp/
 
 client/.env
 server/.env
-server/dist
+/server/dist
+/server/config/
 
 client/node_modules/*
 server/node_modules/*
@@ -12,5 +13,4 @@ server/yarn.lock
 
 client/yarn-error.log
 server/yarn-error.log
-
 
