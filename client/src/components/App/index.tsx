@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader/root';
 
 import theme from '../../styles';
 import useStyles from "./style";
+import Routes from "../../routes";
 
 const App = () => {
     const classes = useStyles();
@@ -12,7 +13,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            App
+            <Routes />
         </ThemeProvider>
     );
 };

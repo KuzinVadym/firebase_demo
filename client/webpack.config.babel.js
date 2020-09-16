@@ -63,6 +63,9 @@ module.exports = {
             }
         ],
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     devtool: 'eval-source-map',
     plugins: [new ForkTsCheckerWebpackPlugin(),  new HtmlWebpackPlugin({hash: false, template: './public/index.html'})],
 };
