@@ -3,9 +3,10 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 
 import Home from '../pages/Home';
 import Login from '../pages/Login';
-import Orders from '../pages/Orders';
+import OrdersRoot from "../pages/OrdersRoot";
 import NoMatch from '../pages/NoMatch';
 import Navigation from "../components/Navigation";
+
 
 
 const authCheck = () => {
@@ -49,7 +50,7 @@ const Routes: React.FC<{}> = () => {
                 </Route>
                 <Route exact path="/login" component={Login} />
                 <PrivateRoute path="/orders">
-                    <Orders />
+                    <OrdersRoot />
                 </PrivateRoute>
                 <Route component={NoMatch}/>
             </Switch>

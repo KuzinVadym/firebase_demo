@@ -1,12 +1,27 @@
 import {makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles(_theme => ({
-    root: {
+const useStyles = makeStyles(theme => ({
+    main: {
+        width: '100%',
+        display: 'inline-block',
+        padding: '5px'
+    },
+    item: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        height: '100vh',
+        margin: '5px',
+        border: `1px solid ${theme.palette.secondary.light}`,
+        userSelect: 'none'
+    },
+    title: {
+        display: 'flex',
+        width: '90%',
+        justifyContent: 'center',
+        borderBottom: `1px solid ${theme.palette.secondary.light}`,
+    },
+    bookingDate: {
+        color: theme.palette.secondary.light
     }
 }));
 

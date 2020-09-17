@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-koa';
 
 import authSchema from './auth';
-import userSchema from './user';
+import ordersSchema from './orders';
 
 const linkSchema = gql`
   scalar Date
@@ -15,4 +15,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, authSchema, userSchema];
+export default [linkSchema, authSchema, ordersSchema];

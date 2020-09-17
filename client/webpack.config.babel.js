@@ -7,7 +7,7 @@ module.exports = {
     entry: ['./src/index'],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
+        publicPath: '/',
     },
     resolve: {
         modules: ['node_modules'],
