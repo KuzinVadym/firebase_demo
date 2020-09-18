@@ -15,8 +15,8 @@ Firebase adn GraphQL
     lisening events from firebase sdk for example for realtime update(rerender)
     components acordingly to changes in firestore, and this will be easy implement 
     with useEffect/useState hooks. With GraphQL you can use local state/cash
-    if you know of course how to use it ))) I will update repo with firebase 
-    on client side after some investigation, how now I imlement standart cashing 
+    if you know of course how to use it(because I don't... for now) ))) I will update repo with firebase 
+    on client side after some investigation, for now I imlement standart cashing 
     workflow with authenticated user in `InMemoryCache`. 
     
 Auth and Redis
