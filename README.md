@@ -23,6 +23,6 @@ Auth and Redis
 
     Right now Auth model suport singe authenticated user. Normaly you would 
     like to put auth user in to redis and keep his session. 
-    In terms of saving some time I leave implementation of Reddis sessions on next update.
+    In terms of saving some time I leave implementation of Redis sessions on next update.
     
          
